@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { StyledForm, StyledInput, StyledButton, StyledAlert, StyledLabel } from './FormComponents';
 
 const ServiceRetirementForm = () => {
 
@@ -23,19 +24,19 @@ const ServiceRetirementForm = () => {
     }
 
     const handleMigrationStepChange = (e, i) => {
-        let temp = {...form}
+        let temp = { ...form }
         temp.migrationSteps[i][e.target.name] = e.target.value
         setForm(temp)
     }
 
     const handleDocumentChange = (e, i) => {
-        let temp = {...form}
+        let temp = { ...form }
         temp.additionalDocumentation[i][e.target.name] = e.target.value
         setForm(temp)
     }
 
     const handleNotificationChange = (e, i) => {
-        let temp = {...form}
+        let temp = { ...form }
         temp.notifications[i][e.target.name] = e.target.value
         setForm(temp)
     }
@@ -60,24 +61,23 @@ const ServiceRetirementForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(form);
+        console.log(JSON.stringify(form));
     }
 
     return (
         <div>
             <h2>Add a new entry</h2>
-            <form onSubmit={handleSubmit} name='serviceRetirementForm'>
-                <label>Service Name:</label>
-                <input
+            <StyledForm onSubmit={handleSubmit} name='serviceRetirementForm'>
+                <StyledLabel>Service Name:</StyledLabel>
+                <StyledInput
                     id="serviceName"
                     type="text"
                     name="serviceName"
                     value={form.serviceName}
                     onChange={(e) => handleFormChange(e)}
                 />
-                <br />
-                <label>Date Updated:</label>
-                <input
+                <StyledLabel>Date Updated:</StyledLabel>
+                <StyledInput
                     id="dateUpdated"
                     type="date"
                     name="dateUpdated"
@@ -85,68 +85,68 @@ const ServiceRetirementForm = () => {
                     onChange={(e) => handleFormChange(e)}
                 />
                 {/* Add more form fields for other properties */}
-                <br />
-                <label>Resoruce Type: </label>
-                <input
+                <StyledLabel>Resource Type: </StyledLabel>
+                <StyledInput
                     id="resourceType"
                     type="text"
                     name="resourceType"
                     value={form.resourceType}
                     onChange={(e) => handleFormChange(e)}
                 />
-                <br />
-                <label>Summary:</label>
-                <textarea
+                <StyledLabel>Summary:</StyledLabel>
+                <StyledInput
                     id="summary"
                     type="text"
                     name="summary"
                     value={form.summary}
                     onChange={(e) => handleFormChange(e)}
                 />
-                <br />
-                <label>Retirement Date:</label>
-                <input
+                <StyledLabel>Retirement Date:</StyledLabel>
+                <StyledInput
                     id="retirementDate"
                     type="date"
                     name="retirementDate"
                     value={form.retirementDate}
                     onChange={(e) => handleFormChange(e)}
                 />
-                <br />
-                <label>Last Date to Create:</label>
-                <input
+                <StyledLabel>Last Date to Create:</StyledLabel>
+                <StyledInput
                     id="lastDateToCreate"
                     type="date"
                     name="lastDateToCreate"
                     value={form.lastDateToCreate}
                     onChange={(e) => handleFormChange(e)}
                 />
-                <br />
-                <hr />
-                <label>Required Actions</label>
-                <br />
-                <label>Title:</label>
-                <input
+                <StyledLabel>Required Actions</StyledLabel>
+                <StyledLabel>Title:</StyledLabel>
+                <StyledInput
                     id="requiredActionsTitle"
                     name="requiredActionsTitle"
                     type="text"
                     value={form.requiredActionsTitle}
                     onChange={(e) => handleFormChange(e)}
                 />
-                <br />
+                <StyledLabel>What Happens after Retirement Date: </StyledLabel>
+                <StyledInput
+                    id="whatHappens"
+                    type="text"
+                    name="whatHappens"
+                    value={form.whatHappens}
+                    onChange={(e) => handleFormChange(e)}
+                />
                 {/* Migration Steps */}
-                <label>Migration Steps</label> <br />
+                <StyledLabel>Migration Steps</StyledLabel>
                 {form.migrationSteps.map((step, index) => (
                     <div key={index}>
-                        <label>Title:</label>
-                        <input
+                        <StyledLabel>Title:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="title"
                             value={form.migrationSteps[index].title}
                             onChange={(e) => handleMigrationStepChange(e, index)}
                         />
-                        <label>Url:</label>
-                        <input
+                        <StyledLabel>Url:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="url"
                             value={form.migrationSteps[index].url}
@@ -154,31 +154,20 @@ const ServiceRetirementForm = () => {
                         />
                     </div>
                 ))}
-                <button onClick={addMigrationStep}>Add Migration Step...</button>
-                <br />
-                <label>What Happens after Retirement Date: </label>
-                <input
-                    id="whatHappens"
-                    type="text"
-                    name="whatHappens"
-                    value={form.whatHappens}
-                    onChange={(e) => handleFormChange(e)}
-                />
-                <br />
-                <hr />
+                <StyledButton onClick={addMigrationStep}>Add Migration Step...</StyledButton>
                 {/* Additional Documentation */}
-                <label>Additional Documentation</label>
+                <StyledLabel>Additional Documentation</StyledLabel>
                 {form.additionalDocumentation.map((doc, index) => (
                     <div key={index}>
-                        <label>Title:</label>
-                        <input
+                        <StyledLabel>Title:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="title"
                             value={form.additionalDocumentation[index].title}
                             onChange={(e) => handleDocumentChange(e, index)}
                         />
-                        <label>URL:</label>
-                        <input
+                        <StyledLabel>URL:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="url"
                             value={form.additionalDocumentation[index].url}
@@ -186,28 +175,27 @@ const ServiceRetirementForm = () => {
                         />
                     </div>
                 ))}
-                <button onClick={addDocumentation}>Add Document</button>
-                <hr />
+                <StyledButton onClick={addDocumentation}>Add Document</StyledButton>
                 {/* Notifications */}
-                <label>Notifications</label>
+                <StyledLabel>Notifications</StyledLabel>
                 {form.notifications.map((notification, index) => (
                     <div key={index}>
-                        <label>Source:</label>
-                        <input
+                        <StyledLabel>Source:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="source"
                             value={form.notifications[index].source}
                             onChange={(e) => handleNotificationChange(e, index)}
                         />
-                        <label>Tracking Id:</label>
-                        <input
+                        <StyledLabel>Tracking Id:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="trackingId"
                             value={form.notifications[index].trackingId}
                             onChange={(e) => handleNotificationChange(e, index)}
                         />
-                        <label>Url:</label>
-                        <input
+                        <StyledLabel>Url:</StyledLabel>
+                        <StyledInput
                             type="text"
                             name="url"
                             value={form.notifications[index].url}
@@ -215,11 +203,9 @@ const ServiceRetirementForm = () => {
                         />
                     </div>
                 ))}
-                <button onClick={addNotification}>Add Notification</button>
-                <br />
-                <hr />
-                <button type="submit">Generate JSON</button>
-            </form>
+                <StyledButton onClick={addNotification}>Add Notification</StyledButton>
+                <StyledButton type="submit">Generate JSON</StyledButton>
+            </StyledForm>
         </div>
     );
 }
