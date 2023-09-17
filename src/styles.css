@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(209, 234, 242);
+  margin: 30px 0 30px 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  border-radius: 5px;
+  display: flex;
+  width: 100%;
+  max-width: 75%;
+  margin: 0 auto;
+  justify-content: center;
+  background-color: white;
+}
+
+hr {
+  border: 1px solid gray;
+  width: 100%;
+  margin: 0 auto;
+  margin: 0px 0 20px 0px;
+}
+
+h5 {
+  text-align: left;
+  margin: 50px 0 3px 0px;
+  color: gray;
+}
+
+h3 {
+  text-align: center;
+  margin: 40px 0 30px 0;
+  color: gray;
+}
+
+.add {
+  background-color: rgb(111, 111, 111);
+  color: white;
+  padding: 10px 15px;
+  margin: 0 0 0 0;
+  border: none;
+  cursor: pointer;
+  width: 35%;
+  clear: both;
+  &:hover {
+    background-color: rgb(164, 164, 164);
+  }
+}
+
+.submit {
+  background-color: darkgreen;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border: none;
+  cursor: pointer;
+  width: 35%;
+  clear: both;
+  &:hover {
+    background-color: rgb(1, 167, 1);
+  }
+}
