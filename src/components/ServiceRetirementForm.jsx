@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Container from 'react-bootstrap/Container';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles.css'
 
 const ServiceRetirementForm = () => {
 
@@ -58,15 +57,33 @@ const ServiceRetirementForm = () => {
         setForm(temp)
     }
 
+    const removeMigrationStep = (index) => {
+        let temp = { ...form }
+        temp.migrationSteps.splice(index, 1);
+        setForm(temp)
+    }
+
     const addDocumentation = () => {
         let temp = { ...form }
         temp.additionalDocumentation.push({ title: '', url: '' })
         setForm(temp)
     }
 
+    const removeDocumentation = (index) => {
+        let temp = { ...form }
+        temp.additionalDocumentation.splice(index, 1);
+        setForm(temp)
+    }
+
     const addNotification = () => {
         let temp = { ...form }
         temp.notifications.push({ source: '', trackingId: '', url: '' })
+        setForm(temp)
+    }
+
+    const removeNotification = (index) => {
+        let temp = { ...form }
+        temp.notifications.splice(index, 1);
         setForm(temp)
     }
 
@@ -78,7 +95,7 @@ const ServiceRetirementForm = () => {
     return (
         <Container className="container">
             <div className="text-center w-75 align-items-center justify-content-center text-center">
-            <h3>Service Entry</h3>
+                <h3>Service Entry</h3>
                 <Form onSubmit={handleSubmit} name='serviceRetirementForm'>
                     <Form.Group className="mb-3" controlId="formServiceName">
                         <FloatingLabel
@@ -88,10 +105,10 @@ const ServiceRetirementForm = () => {
                         >
                             <Form.Control
                                 type="text"
+                                className="control"
                                 name="serviceName"
                                 value={form.serviceName}
                                 onChange={(e) => handleFormChange(e)}
-                                className="input"
                             />
                         </FloatingLabel>
                     </Form.Group>
@@ -102,6 +119,7 @@ const ServiceRetirementForm = () => {
                             className="mb-3"
                         >
                             <Form.Control
+                                className="control"
                                 type="date"
                                 name="dateUpdated"
                                 value={form.dateUpdated}
@@ -118,6 +136,7 @@ const ServiceRetirementForm = () => {
                         >
                             <Form.Control
                                 type="text"
+                                className="control"
                                 name="resourceType"
                                 value={form.resourceType}
                                 onChange={(e) => handleFormChange(e)}
@@ -132,6 +151,7 @@ const ServiceRetirementForm = () => {
                         >
                             <Form.Control
                                 type="text"
+                                className="control"
                                 name="summary"
                                 value={form.summary}
                                 onChange={(e) => handleFormChange(e)}
@@ -145,6 +165,7 @@ const ServiceRetirementForm = () => {
                             className="mb-3"
                         >
                             <Form.Control
+                                className="control"
                                 type="date"
                                 name="retirementDate"
                                 value={form.retirementDate}
@@ -159,6 +180,7 @@ const ServiceRetirementForm = () => {
                             className="mb-3"
                         >
                             <Form.Control
+                                className="control"
                                 type="date"
                                 name="lastDateToCreate"
                                 value={form.lastDateToCreate}
@@ -176,6 +198,7 @@ const ServiceRetirementForm = () => {
                         >
                             <Form.Control
                                 type="text"
+                                className="control"
                                 name="requiredActionsTitle"
                                 value={form.requiredActionsTitle}
                                 onChange={(e) => handleFormChange(e)}
@@ -189,6 +212,7 @@ const ServiceRetirementForm = () => {
                             className="mb-3"
                         >
                             <Form.Control
+                                className="control"
                                 type="text"
                                 name="whatHappens"
                                 value={form.whatHappens}
@@ -208,6 +232,7 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="title"
                                         value={form.migrationSteps[index].title}
@@ -220,12 +245,14 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="url"
                                         value={form.migrationSteps[index].url}
                                         onChange={(e) => handleMigrationStepChange(e, index)}
                                     />
                                 </FloatingLabel>
+                                <Button className="remove" onClick={() => removeMigrationStep(index)}>x</Button>
                             </div>
                         ))}
                         <br />
@@ -243,6 +270,7 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="title"
                                         value={form.additionalDocumentation[index].title}
@@ -255,12 +283,14 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="url"
                                         value={form.additionalDocumentation[index].url}
                                         onChange={(e) => handleDocumentChange(e, index)}
                                     />
                                 </FloatingLabel>
+                                <Button className="remove" onClick={() => removeDocumentation(index)}>x</Button>
                             </div>
                         ))}
                         <br />
@@ -278,6 +308,7 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="source"
                                         value={form.notifications[index].source}
@@ -290,6 +321,7 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="trackingId"
                                         value={form.notifications[index].trackingId}
@@ -302,20 +334,25 @@ const ServiceRetirementForm = () => {
                                     className="mb-3"
                                 >
                                     <Form.Control
+                                        className="control"
                                         type="text"
                                         name="url"
                                         value={form.notifications[index].url}
                                         onChange={(e) => handleNotificationChange(e, index)}
                                     />
                                 </FloatingLabel>
+                                <div className="removeContainer">
+                                <Button className="remove" onClick={() => removeNotification(index)}>x</Button>
+                                </div>
                             </div>
                         ))}
+                        <br />
                         <Button className="add" onClick={addNotification}>Add Notification</Button>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formSubmit">
                         <Button className="submit" type="submit">Submit JSON</Button>
                     </Form.Group>
-                    
+
                 </Form>
             </div >
         </Container>
